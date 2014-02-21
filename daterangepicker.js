@@ -628,7 +628,7 @@
             {
                 date = moment.utc(date).toDate();
                 var monthName = nameMonth(date.getMonth());
-                box.find('.'+month+' .month-name').html(monthName+' '+date.getFullYear());
+                box.find('.'+month+' .month-name').html(monthName+' <b>'+date.getFullYear()+'</b>');
                 box.find('.'+month+' tbody').html(createMonthHTML(date));
                 opt[month] = date;
             }
@@ -732,7 +732,7 @@
                     </div>\
                     <div class="error-top">error</div>\
                     <div class="default-top">default</div>\
-                    <input type="button" class="apply-btn disabled" value="'+lang('apply')+'" />\
+                    <button type="button" class="btn btn-primary btn-sm apply-btn disabled">'+lang('apply')+'</button>\
                 </div>'
                 +'<div class="month-wrapper">'
                 +'<table class="month1" cellspacing="0" border="0" cellpadding="0"><thead><tr class="caption"><th style="width:27px;"><span class="prev">&lt;</span></th><th colspan="5" class="month-name">January, 2011</th><th style="width:27px;"><span class="next">&gt;</span></th></tr>'
