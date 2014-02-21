@@ -895,8 +895,7 @@
                 html.push('<tr>');
                 for(var day = 0; day<7; day++)
                 {
-                    var _day = (opt.startOfWeek == 'monday') ? day+1 : day;
-                    var today = days[week*7+_day];
+                    var today = days[week*7+day];
                     var highlightToday = moment(today.time).format('L') == moment(now).format('L');
                     html.push('<td><div time="'+today.time+'" class="day '+today.type+' '+(today.valid ? 'valid' : 'invalid')+' '+(highlightToday?'real-today':'')+'">'+today.day+'</div></td>');
                 }
