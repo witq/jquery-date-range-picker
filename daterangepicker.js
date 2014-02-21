@@ -165,7 +165,7 @@
                 });
             }
 
-            var defaultTime = new Date();
+            var defaultTime = new moment.utc();
             if (opt.startDate && compare_month(defaultTime,opt.startDate) < 0 ) defaultTime = moment.utc(opt.startDate).toDate();
             if (opt.endDate && compare_month(nextMonth(defaultTime),opt.endDate) > 0 ) defaultTime = prevMonth(moment.utc(opt.endDate).toDate());
 
@@ -286,8 +286,8 @@
                 $(self).trigger('datepicker-apply',
                 {
                     'value': dateRange,
-                    'date1' : new Date(opt.start),
-                    'date2' : new Date(opt.end)
+                    'date1' : moment.utc(opt.start),
+                    'date2' : moment.utc(opt.end)
                 });
             });
             
