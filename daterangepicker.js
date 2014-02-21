@@ -532,11 +532,11 @@
                 box.find('.selected-days').hide();
                 if (opt.start)
                 {
-                    box.find('.start-day').html(getDateString(new Date(parseInt(opt.start))));
+                    box.find('.start-day').html(moment.utc(parseInt(opt.start)).format('LLL'));
                 }
                 if (opt.end)
                 {
-                    box.find('.end-day').html(getDateString(new Date(parseInt(opt.end))));
+                    box.find('.end-day').html(moment.utc(parseInt(opt.end)).format('LLL'));
                 }
                 
                 if (opt.start && opt.end)
