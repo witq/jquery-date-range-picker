@@ -115,7 +115,10 @@
                 //'prev' : ['week','month','year'],
                 'next' : ['week','month','year']
             },
-            customShortcuts : []
+            customShortcuts : [],
+            applyClass: '',
+            nextTpl: '&gt;',
+            prevTpl: '&lt;'
         },opt);
 
         opt.start = false;
@@ -732,10 +735,10 @@
                     </div>\
                     <div class="error-top">error</div>\
                     <div class="default-top">default</div>\
-                    <button type="button" class="btn btn-primary btn-sm apply-btn disabled">'+lang('apply')+'</button>\
+                    <button type="button" class="'+opt.applyClass+' apply-btn disabled">'+lang('apply')+'</button>\
                 </div>'
                 +'<div class="month-wrapper">'
-                +'<table class="month1" cellspacing="0" border="0" cellpadding="0"><thead><tr class="caption"><th style="width:27px;"><span class="prev">&lt;</span></th><th colspan="5" class="month-name">January, 2011</th><th style="width:27px;"><span class="next">&gt;</span></th></tr>'
+                +'<table class="month1" cellspacing="0" border="0" cellpadding="0"><thead><tr class="caption"><th style="width:27px;"><span class="prev">'+opt.prevTpl+'</span></th><th colspan="5" class="month-name">January, 2011</th><th style="width:27px;"><span class="next">&gt;</span></th></tr>'
                 +'<tr class="week-name">'+getWeekHead()+'</thead><tbody></tbody></table>'
                 +'<div class="gap">'+getGapHTML()+'</div><table class="month2" cellspacing="0" border="0" cellpadding="0"><thead><tr class="caption"><th style="width:27px;"><span class="prev">&lt;</span></th><th colspan="5" class="month-name">January, 2011</th><th style="width:27px;"><span class="next">&gt;</span></th></tr><tr class="week-name">'+getWeekHead()+'</thead><tbody></tbody></table>'
                 +'<div style="clear:both;height:0;font-size:0;"></div>'
