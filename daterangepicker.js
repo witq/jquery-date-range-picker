@@ -901,7 +901,7 @@
                 {
                     var today = days[week*7+day];
                     var highlightToday = moment.utc(today.time).format('L') == moment.utc(now).format('L');
-                    var todayTime = moment.utc(today.time).toValue();
+                    var todayTime = moment.utc(today.time).valueOf();
                     html.push('<td><div time="'+todayTime+'" class="day '+today.type+' '+(today.valid ? 'valid' : 'invalid')+' '+(highlightToday?'real-today':'')+'">'+today.day+'</div></td>');
                 }
                 html.push('</tr>');
