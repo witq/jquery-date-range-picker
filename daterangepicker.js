@@ -46,7 +46,7 @@
             'selected': 'Selected:',
             'day':'Day',
             'days': 'Days',
-            'apply': 'Close',
+            'apply': 'Apply',
             'week-1' : 'Mo',
             'week-2' : 'Tu',
             'week-3' : 'We',
@@ -728,7 +728,7 @@
             var html = '<div class="date-picker-wrapper">'
                 +'<div class="top-bar">\
                     <div class="normal-top">\
-                        <span style="color:#333">'+lang('selected')+' </span> <b class="start-day">...</b> '+opt.separator+' <b class="end-day">...</b> <i class="selected-days">(<span class="selected-days-num">3</span> '+lang('days')+')</i>\
+                        <span class="selected">'+lang('selected')+' </span> <b class="start-day">...</b> '+opt.separator+' <b class="end-day">...</b> <i class="selected-days">(<span class="selected-days-num">3</span> '+lang('days')+')</i>\
                     </div>\
                     <div class="error-top">error</div>\
                     <div class="default-top">default</div>\
