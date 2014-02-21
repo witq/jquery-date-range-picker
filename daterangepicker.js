@@ -614,7 +614,7 @@
                         end = moment.utc(end || moment.utc().valueOf()).startOf('day').valueOf();
                     }
                     if (
-                        (opt.start && opt.end && moment.utc(end).isAfter(moment.utc(time)) && moment.utc(start).isBefore(moment.utc(time)))
+                        (opt.start && opt.end && moment.utc(end).isAfter(moment.utc(time).subtract('day', 1)) && moment.utc(start).isBefore(moment.utc(time).add('day', 1)))
                         ||
                         (opt.start && !opt.end && start == time )
                     )
