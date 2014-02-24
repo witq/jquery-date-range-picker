@@ -543,7 +543,7 @@
                 {
                     var start = moment(opt.start),
                         end = moment(opt.end);
-                    box.find('.selected-days').show().find('.selected-days-num').html(Math.abs(start.diff(end, 'days')-1);
+                    box.find('.selected-days').show().find('.selected-days-num').html(Math.abs(start.diff(end, 'days')-1));
                     box.find('.apply-btn').removeClass('disabled');
                     var dateRange = getDateString(new Date(opt.start))+ opt.separator +getDateString(new Date(opt.end));
                     opt.setValue.call(self,dateRange, getDateString(new Date(opt.start)), getDateString(new Date(opt.end)));
