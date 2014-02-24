@@ -541,8 +541,8 @@
                 
                 if (opt.start && opt.end)
                 {
-                    var start = moment(opt.start),
-                        end = moment(opt.end);
+                    var start = moment(opt.start).startOf('day'),
+                        end = moment(opt.end).endOf('day');
                     box.find('.selected-days').show().find('.selected-days-num').html(Math.abs(start.diff(end, 'days')-1));
                     box.find('.apply-btn').removeClass('disabled');
                     var dateRange = getDateString(new Date(opt.start))+ opt.separator +getDateString(new Date(opt.end));
