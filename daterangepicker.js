@@ -124,8 +124,8 @@
         opt.start = false;
         opt.end = false;
 
-        if (opt.startDate && typeof opt.startDate == 'string') opt.startDate = moment.utc(opt.startDate,opt.format).toDate();
-        if (opt.endDate && typeof opt.endDate == 'string') opt.endDate = moment.utc(opt.endDate,opt.format).toDate();
+        if (opt.startDate && typeof opt.startDate == 'string') opt.startDate = moment(opt.startDate,opt.format).toDate();
+        if (opt.endDate && typeof opt.endDate == 'string') opt.endDate = moment(opt.endDate,opt.format).toDate();
 
         var langs = getLanguages();
         var box;
@@ -165,9 +165,9 @@
                 });
             }
 
-            var defaultTime = new moment.utc();
-            if (opt.startDate && compare_month(defaultTime,opt.startDate) < 0 ) defaultTime = moment.utc(opt.startDate).toDate();
-            if (opt.endDate && compare_month(nextMonth(defaultTime),opt.endDate) > 0 ) defaultTime = prevMonth(moment.utc(opt.endDate).toDate());
+            var defaultTime = new moment();
+            if (opt.startDate && compare_month(defaultTime,opt.startDate) < 0 ) defaultTime = moment(opt.startDate).toDate();
+            if (opt.endDate && compare_month(nextMonth(defaultTime),opt.endDate) > 0 ) defaultTime = prevMonth(moment(opt.endDate).toDate());
 
 
             showMonth(defaultTime,'month1');
@@ -175,8 +175,8 @@
 
             if (opt.time.enabled) {
                 if ((opt.startDate && opt.endDate) || (opt.start && opt.end)) {
-                    showTime(moment.utc(opt.start || opt.startDate).toDate(),'time1');
-                    showTime(moment.utc(opt.end || opt.endDate).toDate(),'time2');
+                    showTime(moment(opt.start || opt.startDate).toDate(),'time1');
+                    showTime(moment(opt.end || opt.endDate).toDate(),'time2');
                 } else {
                     showTime(defaultTime,'time1');
                     showTime(defaultTime,'time2');
@@ -213,7 +213,7 @@
                     defaults[0] = defaults[0].replace(/(\d+)(th|nd|st)/,'$1');
                     defaults[1] = defaults[1].replace(/(\d+)(th|nd|st)/,'$1');
                 }
-                setDateRange(moment.utc(defaults[0], ___format).toDate(),moment.utc(defaults[1], ___format).toDate());
+                setDateRange(moment(defaults[0], ___format).toDate(),moment(defaults[1], ___format).toDate());
             }
 
             setTimeout(function()
@@ -286,8 +286,8 @@
                 $(self).trigger('datepicker-apply',
                 {
                     'value': dateRange,
-                    'date1' : moment.utc(opt.start),
-                    'date2' : moment.utc(opt.end)
+                    'date1' : moment(opt.start),
+                    'date2' : moment(opt.end)
                 });
             });
             
@@ -395,17 +395,17 @@
             });
             
             function renderTime (name, date) {
-                $("." + name + " input[type=range].hour-range").val(moment.utc(date).hours());
-                $("." + name + " input[type=range].minute-range").val(moment.utc(date).minutes());
-                setTime(name, moment.utc(date).format("HH"), moment.utc(date).format("mm"));
+                $("." + name + " input[type=range].hour-range").val(moment(date).hours());
+                $("." + name + " input[type=range].minute-range").val(moment(date).minutes());
+                setTime(name, moment(date).format("HH"), moment(date).format("mm"));
             }
 
             function changeTime (name, date) {
                 opt[name] = parseInt(
-                    moment.utc(parseInt(date))
+                    moment(parseInt(date))
                         .startOf('day')
-                        .add('h', moment.utc(opt[name + "Time"]).format("HH"))
-                        .add('m', moment.utc(opt[name + "Time"]).format("mm")).valueOf()
+                        .add('h', moment(opt[name + "Time"]).format("HH"))
+                        .add('m', moment(opt[name + "Time"]).format("mm")).valueOf()
                     );
             }
             function swapTime () {
@@ -419,15 +419,15 @@
                 switch (name) {
                     case "time1":
                         if (opt.start) {
-                            setRange("start", moment.utc(opt.start));
+                            setRange("start", moment(opt.start));
                         }
-                        setRange("startTime", moment.utc(opt.startTime || moment.utc().valueOf()));
+                        setRange("startTime", moment(opt.startTime || moment().valueOf()));
                         break;
                     case "time2":
                         if (opt.end) {
-                            setRange("end", moment.utc(opt.end));
+                            setRange("end", moment(opt.end));
                         }
-                        setRange("endTime", moment.utc(opt.endTime || moment.utc().valueOf()));
+                        setRange("endTime", moment(opt.endTime || moment().valueOf()));
                         break;
                 }
                 function setRange(name, timePoint) {
@@ -532,11 +532,11 @@
                 box.find('.selected-days').hide();
                 if (opt.start)
                 {
-                    box.find('.start-day').html(moment.utc(parseInt(opt.start)).format('LL'));
+                    box.find('.start-day').html(moment(parseInt(opt.start)).format('LL'));
                 }
                 if (opt.end)
                 {
-                    box.find('.end-day').html(moment.utc(parseInt(opt.end)).format('LL'));
+                    box.find('.end-day').html(moment(parseInt(opt.end)).format('LL'));
                 }
                 
                 if (opt.start && opt.end)
@@ -609,12 +609,12 @@
                         start = opt.start,
                         end = opt.end;
                     if (opt.time.enabled) {
-                        time = moment.utc(time).startOf('day').valueOf();
-                        start = moment.utc(start || moment.utc().valueOf()).startOf('day').valueOf();
-                        end = moment.utc(end || moment.utc().valueOf()).startOf('day').valueOf();
+                        time = moment(time).startOf('day').valueOf();
+                        start = moment(start || moment().valueOf()).startOf('day').valueOf();
+                        end = moment(end || moment().valueOf()).startOf('day').valueOf();
                     }
                     if (
-                        (opt.start && opt.end && moment.utc(end).isAfter(moment.utc(time).subtract('day', 1)) && moment.utc(start).isBefore(moment.utc(time).add('day', 1)))
+                        (opt.start && opt.end && moment(end).isAfter(moment(time).subtract('day', 1)) && moment(start).isBefore(moment(time).add('day', 1)))
                         ||
                         (opt.start && !opt.end && start == time )
                     )
@@ -630,7 +630,7 @@
             
             function showMonth(date,month)
             {
-                date = moment.utc(date).toDate();
+                date = moment(date).toDate();
                 var monthName = nameMonth(date.getMonth());
                 box.find('.'+month+' .month-name').html(monthName+' <b>'+date.getFullYear()+'</b>');
                 box.find('.'+month+' tbody').html(createMonthHTML(date));
@@ -650,14 +650,14 @@
             
             function getDateString(d)
             {
-                return moment.utc(d).format(opt.format);
+                return moment(d).format(opt.format);
             }
             
             function showGap()
             {
                 showSelectedDays();
-                var m1 = parseInt(moment.utc(opt.month1).format('YYYYMM'));
-                var m2 = parseInt(moment.utc(opt.month2).format('YYYYMM'));
+                var m1 = parseInt(moment(opt.month1).format('YYYYMM'));
+                var m2 = parseInt(moment(opt.month2).format('YYYYMM'));
                 var p = Math.abs(m1 - m2);
                 var shouldShow = (p > 1 && p !=89);
                 if (shouldShow)
@@ -683,7 +683,7 @@
 
         function compare_month(m1,m2)
         {
-            var p = parseInt(moment.utc(m1).format('YYYYMM')) - parseInt(moment.utc(m2).format('YYYYMM'));
+            var p = parseInt(moment(m1).format('YYYYMM')) - parseInt(moment(m2).format('YYYYMM'));
             if (p > 0 ) return 1;
             if (p == 0) return 0;
             return -1;
@@ -691,7 +691,7 @@
 
         function compare_day(m1,m2)
         {
-            var p = parseInt(moment.utc(m1).format('YYYYMMDD')) - parseInt(moment.utc(m2).format('YYYYMMDD'));
+            var p = parseInt(moment(m1).format('YYYYMMDD')) - parseInt(moment(m2).format('YYYYMMDD'));
             if (p > 0 ) return 1;
             if (p == 0) return 0;
             return -1;
@@ -699,7 +699,7 @@
         
         function nextMonth(month)
         {
-            month = moment.utc(month).toDate();
+            month = moment(month).toDate();
             var toMonth = month.getMonth();
             while(month.getMonth() == toMonth) month = new Date(month.getTime()+86400000);
             return month;
@@ -707,7 +707,7 @@
         
         function prevMonth(month)
         {
-            month = moment.utc(month).toDate();
+            month = moment(month).toDate();
             var toMonth = month.getMonth();
             while(month.getMonth() == toMonth) month = new Date(month.getTime()-86400000);
             return month;
@@ -886,7 +886,7 @@
             var toMonth = d.getMonth();
             for(var i=0; i<40; i++)
             {
-                var today = moment.utc(d).add('days', i).toDate();
+                var today = moment(d).add('days', i).toDate();
                 var valid = true;
                 if (opt.startDate && compare_day(today,opt.startDate) < 0) valid = false;
                 if (opt.endDate && compare_day(today,opt.endDate) > 0) valid = false;
@@ -900,7 +900,7 @@
                 for(var day = 0; day<7; day++)
                 {
                     var today = days[week*7+day];
-                    var highlightToday = moment.utc(today.time).format('L') == moment.utc(now).format('L');
+                    var highlightToday = moment(today.time).format('L') == moment(now).format('L');
                     html.push('<td><div time="'+today.time+'" class="day '+today.type+' '+(today.valid ? 'valid' : 'invalid')+' '+(highlightToday?'real-today':'')+'">'+today.day+'</div></td>');
                 }
                 html.push('</tr>');
