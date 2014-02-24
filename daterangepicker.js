@@ -453,7 +453,7 @@
                 {
                     $(self).trigger('datepicker-click',
                     {
-                        'value': moment(parseInt(time)).format(opt.format);
+                        'value': moment(parseInt(time)).format(opt.format)
                     });
                 }
                 if ((opt.start && opt.end) || (!opt.start && !opt.end) )
