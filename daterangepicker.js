@@ -449,6 +449,13 @@
                 if (day.hasClass('invalid')) return;
                 var time = day.attr('time');
                 day.addClass('checked');
+                if (initted)
+                {
+                    $(self).trigger('datepicker-click',
+                    {
+                        'value': moment(parseInt(time)).format(opt.format);
+                    });
+                }
                 if ((opt.start && opt.end) || (!opt.start && !opt.end) )
                 {
                     opt.start = time;
