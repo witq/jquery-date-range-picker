@@ -118,7 +118,8 @@
             customShortcuts : [],
             applyClass: '',
             nextTpl: '&gt;',
-            prevTpl: '&lt;'
+            prevTpl: '&lt;',
+            weekSelect: false
         },opt);
 
         opt.start = false;
@@ -456,35 +457,38 @@
                         'value': moment(parseInt(time)).format(opt.format)
                     });
                 }
-                if (((opt.start && opt.end) || (!opt.start && !opt.end)) && opt.weekSelect === true) {
+
+                if (opt.weekSelect === true) {
                     var d = moment(parseInt(time)),
                         start = d.startOf('week').valueOf(),
-                        end = d.endOf('week').valueOf();
-                    opt.start = start;
-                    opt.end = end;
+                        end = d.endOf('week').startOf('day').valueOf();
+                    opt.start = start + '';
+                    opt.end = end + '';
                 }
-                if ((opt.start && opt.end) || (!opt.start && !opt.end) )
-                {
-                    opt.start = time;
-                    opt.end = false;
-                    if (opt.time.enabled) {
-                        changeTime("start", opt.start);
+                else {
+                    if ((opt.start && opt.end) || (!opt.start && !opt.end) )
+                    {
+                        opt.start = time;
+                        opt.end = false;
+                        if (opt.time.enabled) {
+                            changeTime("start", opt.start);
+                        }
                     }
-                }
-                else if (opt.start)
-                {
-                    opt.end = time;
-                    if (opt.time.enabled) {
-                        changeTime("end", opt.end);
+                    else if (opt.start)
+                    {
+                        opt.end = time;
+                        if (opt.time.enabled) {
+                            changeTime("end", opt.end);
+                        }
                     }
-                }
-                if (opt.start && opt.end && opt.start > opt.end)
-                {
-                    var tmp = opt.end;
-                    opt.end = opt.start;
-                    opt.start = tmp;
-                    if (opt.time.enabled) {
-                        swapTime();
+                    if (opt.start && opt.end && opt.start > opt.end)
+                    {
+                        var tmp = opt.end;
+                        opt.end = opt.start;
+                        opt.start = tmp;
+                        if (opt.time.enabled) {
+                            swapTime();
+                        }
                     }
                 }
 
