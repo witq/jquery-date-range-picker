@@ -456,6 +456,13 @@
                         'value': moment(parseInt(time)).format(opt.format)
                     });
                 }
+                if (opt.weekSelect === true) {
+                    var d = moment(parseInt(time)),
+                        start = d.startOf('week').valueOf(),
+                        end = d.endOf('week').valueOf();
+                    opt.start = start;
+                    opt.end = end;
+                }
                 if ((opt.start && opt.end) || (!opt.start && !opt.end) )
                 {
                     opt.start = time;
