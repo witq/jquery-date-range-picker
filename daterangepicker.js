@@ -162,7 +162,7 @@
                 box.css(
                 {
                     top: offset.top+$(this).outerHeight() + parseInt( 0 + $('body').css('border-top'),10 ),
-                    left: offset.left + $(self).width() - box.width() - 16
+                    left: offset.left + $(self).width() - box.width()
                 });
             }
 
@@ -778,12 +778,11 @@
                 +'<div class="gap">'+getGapHTML()+'</div><table class="month2" cellspacing="0" border="0" cellpadding="0"><thead><tr class="caption"><th style="width:27px;"><span class="prev">'+opt.prevTpl+'</span></th><th colspan="5" class="month-name">January, 2011</th><th style="width:27px;"><span class="next">'+opt.nextTpl+'</span></th></tr><tr class="week-name">'+getWeekHead()+'</thead><tbody></tbody></table>'
                 +'<div style="clear:both;height:0;font-size:0;"></div>'
                 +'<div class="time"><div class="time1"></div><div class="time2"></div></div>'
-                +'<div style="clear:both;height:0;font-size:0;"></div>'
                 +'</div>';
 
             if (opt.showShortcuts)
             {
-                html += '<div class="footer"><b>'+lang('shortcuts')+'</b>';
+                html += '<div class="footer"><b>'+lang('shortcuts')+':</b>';
 
                 var data = opt.shortcuts;
                 if (data)
@@ -836,14 +835,15 @@
                 }
 
                 if (opt.customShortcuts)
+                html += '<ul>';
                 {
                     for(var i=0;i<opt.customShortcuts.length; i++)
                     {
                         var sh = opt.customShortcuts[i];
-                        html+= '&nbsp;<span class="custom-shortcut"><a href="javascript:;" shortcut="custom">'+sh.name+'</a></span>';
+                        html+= '<li class="custom-shortcut"><a href="javascript:;" shortcut="custom">'+sh.name+'</a></li>';
                     }
                 }
-
+                html += '</ul>';
                 html +='</div>';
             }
             html += '</div>';
