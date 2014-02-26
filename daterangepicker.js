@@ -119,7 +119,7 @@
             applyClass: '',
             nextTpl: '&gt;',
             prevTpl: '&lt;',
-            weekSelect: false
+            selectRange: ''
         },opt);
 
         opt.start = false;
@@ -458,10 +458,24 @@
                     });
                 }
 
-                if (opt.weekSelect === true) {
+                if (opt.selectRange === 'week') {
                     var d = moment(parseInt(time)),
                         start = d.startOf('week').valueOf(),
                         end = d.endOf('week').startOf('day').valueOf();
+                    opt.start = start + '';
+                    opt.end = end + '';
+                }
+                else if (opt.selectRange === 'month') {
+                    var d = moment(parseInt(time)),
+                        start = d.startOf('month').valueOf(),
+                        end = d.endOf('month').startOf('day').valueOf();
+                    opt.start = start + '';
+                    opt.end = end + '';
+                }
+                else if (opt.selectRange === 'year') {
+                    var d = moment(parseInt(time)),
+                        start = d.startOf('year').valueOf(),
+                        end = d.endOf('year').startOf('day').valueOf();
                     opt.start = start + '';
                     opt.end = end + '';
                 }
@@ -634,7 +648,7 @@
                         end = moment(end || moment().valueOf()).startOf('day').valueOf();
                     }
                     if (
-                        (opt.start && opt.end && moment(end).isAfter(moment(time).subtract('day', 1)) && moment(start).isBefore(moment(time).add('day', 1)))
+                        (opt.start && opt.end && moment(end).valueOf() >= moment(time).valueOf() && moment(start).valueOf() <= moment(time).valueOf())
                         ||
                         (opt.start && !opt.end && start == time )
                     )
