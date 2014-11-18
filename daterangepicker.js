@@ -764,7 +764,7 @@
 
         function createDom()
         {
-            var html = '<div class="date-picker-wrapper' + opt.boxClass + '">'
+            var html = '<div class="date-picker-wrapper ' + opt.boxClass + '">'
                 +'<div class="top-bar">\
                     <div class="normal-top">\
                         <span class="selected">'+lang('selected')+' </span> <b class="start-day">...</b> '+opt.separator+' <b class="end-day">...</b> <i class="selected-days">(<span class="selected-days-num">3</span> '+lang('days')+')</i>\
